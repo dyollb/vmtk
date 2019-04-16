@@ -9,8 +9,10 @@ set(dirs
   DifferentialGeometry
   IO
   Misc
-  Segmentation
   )
+if( USE_ITK )
+  list(APPEND dirs Segmentation)
+endif( USE_ITK )
 
 if (VMTK_USE_RENDERING)
   list(APPEND dirs Rendering)

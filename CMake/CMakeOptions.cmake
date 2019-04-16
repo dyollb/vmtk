@@ -18,10 +18,12 @@ endif ( NOT VTK_FOUND )
 #
 # Try to find ITK and include its settings (otherwise complain)
 #
+if ( USE_ITK )
 if ( NOT ITK_FOUND )
   find_package(ITK REQUIRED)
   include(${ITK_USE_FILE})
 endif ( NOT ITK_FOUND )
+endif ( USE_ITK )
 
 #
 # Build shared libs ?

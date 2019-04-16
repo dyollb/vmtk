@@ -54,12 +54,16 @@ endif( VMTK_USE_X )
 
 #-----------------------------------------------------------------------------
 # ITK setup
+option( USE_ITK
+  "Build with ITK dependency." ON )
+if( USE_ITK )
 option( USE_SYSTEM_ITK
   "Exclude ITK from SuperBuild and use an existing build instead." OFF )
 if( USE_SYSTEM_ITK )
   find_package( ITK REQUIRED )
   include( ${ITK_USE_FILE} )
 endif( USE_SYSTEM_ITK )
+endif( USE_ITK )
 
 set(VMTK_RENDERING_BACKEND "OpenGL2" CACHE STRING "Graphic backend for VTK")
 
@@ -174,10 +178,12 @@ if( VMTK_USE_SUPERBUILD )
 
 else( VMTK_USE_SUPERBUILD )
 
+  if ( USE_ITK )
   if ( NOT ITK_FOUND )
     find_package( ITK REQUIRED )
     include( ${ITK_USE_FILE} )
   endif( NOT ITK_FOUND )
+  endif( USE_ITK )
 
   if ( NOT VTK_FOUND )
     find_package( VTK REQUIRED )

@@ -1,7 +1,9 @@
 add_subdirectory(Doxygen)
 add_subdirectory(OpenNL)
 #add_subdirectory(Stellar_1.0)
-add_subdirectory(vtkvmtkITK)
+if( USE_ITK )
+  add_subdirectory(vtkvmtkITK)
+endif( USE_ITK )
 
 if (DEFINED VMTK_BUILD_TETGEN)
   if (VMTK_BUILD_TETGEN AND VTK_VMTK_BUILD_TETGEN)
